@@ -19,6 +19,9 @@ Output:
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/permutations
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+提交记录：
+Runtime：16ms, 85.52%
 */
 
 #include <iostream>
@@ -78,8 +81,6 @@ public:
 
 			permute_recusion(nums_, deep+1, length, result_item, result);
 		}
-
-		
 	}
 
 	// 循环 实现

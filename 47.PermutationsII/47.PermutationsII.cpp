@@ -81,8 +81,6 @@ public:
 
 			permute_recusion(nums_, deep + 1, length, result_item, result);
 		}
-
-
 	}
 
 	// 循环 实现
