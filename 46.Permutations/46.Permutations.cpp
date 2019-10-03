@@ -37,6 +37,7 @@ public:
 	vector<vector<int>> permute(vector<int>& nums) {
 		vector<int> result_item;
 		vector< vector<int>> result;
+
 		permute_recusion(nums, 1, nums.size(), result_item, result);
 		for (int i = 0; i < result.size(); i++) {
 			for (int j = 0; j < result.at(i).size(); j++) {

@@ -20,6 +20,7 @@ Output:
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -28,9 +29,13 @@ private:
 	vector<int> temp;
 
 public:
-	vector<vector<int>> permute(vector<int>& nums) {
+	vector<vector<int>> permuteUnique(vector<int>& nums) {
 		vector<int> result_item;
 		vector< vector<int>> result;
+
+		// 排序
+		sort(nums.begin(), nums.end());
+
 		permute_recusion(nums, 1, nums.size(), result_item, result);
 		for (int i = 0; i < result.size(); i++) {
 			for (int j = 0; j < result.at(i).size(); j++) {
@@ -46,18 +51,25 @@ public:
 		// 递归到末尾，则停止
 		if (deep > length) {
 			// 判断结果列表中是否已有当前排列，去重
-			vector < vector<int>>::iterator iVector = find(result.begin(), result.end(), result_item);
-			if (iVector != result.end()) {
+			/*if (result.size() > 0 && result_item == result.at(result.size() - 1)) {
 			}
 			else {
 				result.push_back(result_item);
-			}
+			}*/
+			result.push_back(result_item);
 			temp.assign(result_item.begin(), result_item.end());
 			result_item.clear();
 			return;
 		}
 
 		for (int i = 0; i < nums.size(); i++) {
+			// 去重
+			// 如果在同一循环下，有相同的数字，则只使用其中一个进行下面的排列即可
+			if (i > 0) {
+				if (nums.at(i) == nums.at(i - 1)) {
+					continue;
+				}
+			}
 			if (deep == 1) {
 				result_item.clear();
 			}
@@ -94,6 +106,6 @@ int main()
 	vector<int> nums = { 1,2,1 };
 
 	Solution solution;
-	solution.permute(nums);
+	solution.permuteUnique(nums);
 	cin;
 }
